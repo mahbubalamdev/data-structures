@@ -43,6 +43,15 @@ bool contains(Node* root, int label){
     }
 }
 
+void preOrder(Node* root, vector<int>& result){
+    if(root == NULL){
+        return;
+    }
+    result.push_back(root->label);
+    preOrder(root->left, result);
+    preOrder(root->right, result);
+}
+
 void postOrder(Node* root, vector<int>& result){
     if(root == NULL){
         return ;
@@ -83,6 +92,12 @@ Node* buildFromPostOrder(vector<int>& postOrder, int& index, int min, int max){
     return root;
 
 }
+
+Node* buildFromPreOrder(vector<int>& preOrder){
+    int index = 0;
+    return buildFromPreOrder(preOrder, index, INT_MIN, INT_MAX);
+}
+
 Node * buildFromPostOrder(vector<int>& postOrder){
     int index = postOrder.size() - 1;
     return buildFromPostOrder(postOrder, index, INT_MIN, INT_MAX);
@@ -93,6 +108,23 @@ int main(int argc, char* argv[]){
     Node *root = buildFromPostOrder(postOrderTraversal);
 
     vector<int> inOrderTraversal;
+    inOrder(root, inOrderTraversal);
+    for(int x: inOrderTraversal){
+        cout << x << " ";
+    }
+    cout << endl;
+
+    vector<int> preOrderTraversal;
+    preOrder(root, preOrderTraversal);
+    Node *root = buildFromPreOrder(preOrderTraversal);
+    vector<int> result;
+    postOrder(root, result);
+    for(int x: result){
+        cout << x << " ";
+    }
+    cout << endl;
+
+    inOrderTraversal.clear();
     inOrder(root, inOrderTraversal);
     for(int x: inOrderTraversal){
         cout << x << " ";
