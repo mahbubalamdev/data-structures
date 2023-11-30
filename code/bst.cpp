@@ -103,32 +103,45 @@ Node * buildFromPostOrder(vector<int>& postOrder){
     return buildFromPostOrder(postOrder, index, INT_MIN, INT_MAX);
 }
 
+void print(vector<int> v){
+    for(int x : v){
+        cout << x << " ";
+    }
+    cout << endl;
+}
+
 int main(int argc, char* argv[]){
     vector<int> postOrderTraversal{5, 17, 11, 34, 42, 38, 20};
+
+    cout << "Post order" << endl;
+    print(postOrderTraversal);
+
     Node *root = buildFromPostOrder(postOrderTraversal);
 
     vector<int> inOrderTraversal;
     inOrder(root, inOrderTraversal);
-    for(int x: inOrderTraversal){
-        cout << x << " ";
-    }
-    cout << endl;
+    
+    cout<< "In order"<<endl;
+    print(inOrderTraversal);
 
     vector<int> preOrderTraversal;
     preOrder(root, preOrderTraversal);
+
+    cout << "Pre order" << endl;
+    print(preOrderTraversal);
+
+
     root = buildFromPreOrder(preOrderTraversal);
     vector<int> result;
     postOrder(root, result);
-    for(int x: result){
-        cout << x << " ";
-    }
-    cout << endl;
+    
+    cout<<"Post order" << endl;
+    print(result);
 
     inOrderTraversal.clear();
     inOrder(root, inOrderTraversal);
-    for(int x: inOrderTraversal){
-        cout << x << " ";
-    }
-    cout << endl;
+    
+    cout << "In Order" << endl;
+    print(inOrderTraversal);
 
 }
