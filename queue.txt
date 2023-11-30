@@ -1,0 +1,13 @@
+Provide C++  code to answer the following questions. Please provide short
+and straightforward answers to each question. Answers that are too hard to follow shall be marked
+wrong.
+BACKGROUND:
+A Circular Queue (aka, ring buffer) is a linear data structure. Just like a regular queue, the elements
+are added to or removed from the circular queue based on the FIFO (First-in-first-out) principle.
+However, unlike a regular queue, the last position of a circular queue is connected back to the first
+position to make a circle; hence the name.
+A Deque or double-ended queue generalizes a queue where elements can be added to or removed
+from both ends: the front and the rear.
+A kQueues is an abstract data structure that implements k queues on the same underlying contiguous
+memory (e.g., one array). The operations on a Queue allow a user to specify the exact queue
+number (i.e., from 0 to k- 1) where an element will be added to or removed from.
