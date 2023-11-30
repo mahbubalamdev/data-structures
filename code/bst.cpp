@@ -116,7 +116,7 @@ int main(int argc, char* argv[]){
 
     vector<int> preOrderTraversal;
     preOrder(root, preOrderTraversal);
-    Node *root = buildFromPreOrder(preOrderTraversal);
+    root = buildFromPreOrder(preOrderTraversal);
     vector<int> result;
     postOrder(root, result);
     for(int x: result){
