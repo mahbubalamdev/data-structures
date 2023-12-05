@@ -37,22 +37,23 @@ class Graph{
 map<string, bool> visited;
 
 
-bool dfs(Graph g, string s){
+vector<string> dfs(Graph g, string s){
     visited[s] = true;
-    cout << s << endl;
+    // cout << s << endl;
     if (g.isGoalState(s)){
-        return true;
+        return {s};
     }
     vector<string> neighbours = g.getSuccessor(s);
     sort(neighbours.begin(), neighbours.end());
 
-    bool goalFound = false;
+    vector<string> path;
     for(string neighbour : neighbours){
-        if(!visited[neighbour] && !goalFound){
-            goalFound = dfs(g, neighbour);
+        if(!visited[neighbour]){
+            vector<string> result = dfs(g, neighbour);
+            path.insert(path.end(), result.begin(), result.end());
         }
     }
-    return goalFound;
+    return path;
 }
  
 int main(){
@@ -70,6 +71,9 @@ int main(){
     g.addEdge("Hancock", "Woodbury", 100);
 
 
-    dfs(g, g.getStartState());
+    vector<string> path = dfs(g, g.getStartState());
+    for(string s : path){
+        cout << s << endl;
+    }
     return 0;
 }
