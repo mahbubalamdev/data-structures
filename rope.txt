@@ -1,0 +1,13 @@
+
+BACKGROUND: The rope data structure is used to represent long strings via a binary tree.Leaf nodes each
+contain a string where the length of this string is the the size of a leaf-node. An interior node
+contains its size, which is the sum of the sizes of the leaf nodes below it. An empty rope represents
+"" and has size 0. The string represented by the rope is the result of an in-order concatenation of the leaf-strings.
+
+(a) Give a data-structure for representing ropes as described above.
+(b) Write a function concat that takes two ropes r 1 and r2, and returns a rope that repre­sents the concatenation of r1's string followed by r2's string. This function should take 0(1)time. Note: If r1 (respectively, r2) is an empty tree, then concat(r1,r2) should return r2 (respectively, r1).
+(c) Write a function index that takes a rope r and a nonnegative integer i and returns the i-th character in the string represented by r. (We use 0-based indexing.) Do not worry about
+out-of-bound index values. This function should take O(h)time, where his the height of the tree.
+(d) Write a function split that takes a roper (representing a string coc1... cn-1) and an integer i with O :'.Si < n - 1. The function returns a pair of ropes (r 1, r2) where r 1 represents co... Ciand r2 represents Ci+1... Cn- I. This function should take 0( h) time, where h is the height of the tree. Note: In C-like languages you can use length-2 arrays for pairs. Example: The two rightmost treespictured above are the result of splitting the leftmost tree at index 10. (Hint: Make use of concat and ideas from part c.)
+(e) Write a function insert that takes three arguments: (i) a rope r (representing a string c0c1... Cn-1 ), (ii) a string s, and (iii) an integer i with O < i< n-1. The function returns a rope representing the string that results from inserting the string s between the i-th and (i + 1)-st characters in coc1... Cn-1 · (Hint: Use concat and split.)
+(f) Write a function delete that takes a rope r (representing a string coc1.. .cn-1) and two integers i and j with O< i < i+j < n. The function returns a rope representing the string coc1... Ci-ICi+j· .. en-I, i.e., the substring ci ... ci+j-l is deleted. (Hint: Use concat and split.)
