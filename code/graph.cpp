@@ -37,17 +37,19 @@ class Graph{
 map<string, bool> visited;
 
 
-void dfs(Graph g, string s){
+bool dfs(Graph g, string s){
     visited[s] = true;
     cout << s << endl;
     if (g.isGoalState(s)){
-        return;
+        return true;
     }
     vector<string> neighbours = g.getSuccessor(s);
     sort(neighbours.begin(), neighbours.end());
+
+    bool goalFound = false;
     for(string neighbour : neighbours){
-        if(!visited[neighbour]){
-            dfs(g, neighbour);
+        if(!visited[neighbour] && !goalFound){
+            goalFound = dfs(g, neighbour);
         }
     }
 }
