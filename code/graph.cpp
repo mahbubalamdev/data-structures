@@ -61,6 +61,6 @@ int main(){
     g.addEdge("Hancock", "Woodbury", 100);
 
 
-    dfs(g, g.getStartState())
+    dfs(g, g.getStartState());
     return 0;
 }
