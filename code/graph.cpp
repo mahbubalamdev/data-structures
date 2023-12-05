@@ -2,6 +2,7 @@
 #include<map>
 #include<vector>
 #include<tuple>
+#include <algorithm>
 
 using namespace std;
 
