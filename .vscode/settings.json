@@ -7,6 +7,7 @@
         "vector": "cpp",
         "__locale": "cpp",
         "map": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "queue": "cpp"
     }
 }

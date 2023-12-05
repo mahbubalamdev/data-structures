@@ -2,6 +2,7 @@
 #include<map>
 #include<vector>
 #include<tuple>
+#include<queue>
 #include <algorithm>
 
 using namespace std;
@@ -39,7 +40,6 @@ map<string, bool> visited;
 
 vector<string> dfs(Graph g, string s){
     visited[s] = true;
-    // cout << s << endl;
     if (g.isGoalState(s)){
         return {s};
     }
@@ -57,6 +57,38 @@ vector<string> dfs(Graph g, string s){
     }
     return {};
 }
+
+vector<string> bfs(Graph g, string s){
+    map<string, string> parent;
+    queue<string> queue;
+    queue.push(s);
+    parent[s] = "";
+    visited[s] = true;
+    while(!queue.empty()){
+        string current = queue.front();
+        queue.pop();
+        vector<string> neighbours = g.getSuccessor(current);
+        sort(neighbours.begin(), neighbours.end());
+        for(string neighbour : neighbours){
+            if(!visited[neighbour]){
+                visited[neighbour] = true;
+                queue.push(neighbour);
+                parent[neighbour] = current;
+                if (g.isGoalState(neighbour)){
+                    break;
+                }
+            }
+        }
+    }
+
+    vector<string> result;
+    string current = "Manhattan";
+    while(current != ""){
+        result.push_back(current);
+        current = parent[current];
+    }
+    return result;
+}
  
 int main(){
     Graph g;
@@ -73,10 +105,18 @@ int main(){
     g.addEdge("Hancock", "Woodbury", 100);
 
 
+    visited = map<string, bool>();
     vector<string> path = dfs(g, g.getStartState());
     reverse(path.begin(), path.end());
     for(string s : path){
         cout << s << endl;
     }
+
+    visited = map<string, bool>();
+    path = bfs(g, g.getStartState());
+    for(string s : path){
+        cout << s << endl;
+    }
+
     return 0;
 }
