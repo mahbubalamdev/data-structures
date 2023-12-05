@@ -39,7 +39,12 @@ map<string, bool> visited;
 void dfs(Graph g, string s){
     visited[s] = true;
     cout << s << endl;
-    for(string neighbour : g.getSuccessor(s)){
+    if (g.isGoalState(s)){
+        return;
+    }
+    vector<string> neighbours = g.getSuccessor(s);
+    sort(neighbours.begin(), neighbours.end());
+    for(string neighbour : neighbours){
         if(!visited[neighbour]){
             dfs(g, neighbour);
         }
