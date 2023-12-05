@@ -36,6 +36,15 @@ class Graph{
 map<string, bool> visited;
 
 
+void dfs(Graph g, string s){
+    visited[s] = true;
+    cout << s << endl;
+    for(string neighbour : g.getSuccessor(s)){
+        if(!visited[neighbour]){
+            dfs(g, neighbour);
+        }
+    }
+}
  
 int main(){
     Graph g;
@@ -50,8 +59,8 @@ int main(){
     g.addEdge("Albany", "Woodbury", 96);
     g.addEdge("Woodbury", "Manhattan", 48);
     g.addEdge("Hancock", "Woodbury", 100);
-    for (string s: g.getSuccessor("Syracuse")){
-        cout << s << endl;
-    }
+
+
+    dfs(g, g.getStartState())
     return 0;
 }
