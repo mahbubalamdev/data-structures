@@ -52,6 +52,7 @@ bool dfs(Graph g, string s){
             goalFound = dfs(g, neighbour);
         }
     }
+    return goalFound;
 }
  
 int main(){
