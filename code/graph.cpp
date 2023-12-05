@@ -105,6 +105,7 @@ int main(){
     g.addEdge("Hancock", "Woodbury", 100);
 
 
+    cout << "DFS" << endl;
     visited = map<string, bool>();
     vector<string> path = dfs(g, g.getStartState());
     reverse(path.begin(), path.end());
@@ -112,8 +113,10 @@ int main(){
         cout << s << endl;
     }
 
+    cout << "BFS" << endl;
     visited = map<string, bool>();
     path = bfs(g, g.getStartState());
+    reverse(path.begin(), path.end());
     for(string s : path){
         cout << s << endl;
     }
