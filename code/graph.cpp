@@ -46,14 +46,16 @@ vector<string> dfs(Graph g, string s){
     vector<string> neighbours = g.getSuccessor(s);
     sort(neighbours.begin(), neighbours.end());
 
-    vector<string> path;
     for(string neighbour : neighbours){
         if(!visited[neighbour]){
             vector<string> result = dfs(g, neighbour);
-            path.insert(path.end(), result.begin(), result.end());
+            if(!result.empty()){
+                result.push_back(s);
+                return result;
+            }
         }
     }
-    return path;
+    return {};
 }
  
 int main(){
@@ -72,6 +74,7 @@ int main(){
 
 
     vector<string> path = dfs(g, g.getStartState());
+    reverse(path.begin(), path.end());
     for(string s : path){
         cout << s << endl;
     }
