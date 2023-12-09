@@ -7,7 +7,7 @@ int main(int argc, char **argv)
     printf("Hello!\n");
     proc_id = fork();
     if (proc_id){
-        waitpid(proc_id); 
+        waitpid(proc_id, NULL); 
     }
     else {
         printf("Value of val = % d\n",val);
