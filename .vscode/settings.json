@@ -8,6 +8,7 @@
         "__locale": "cpp",
         "map": "cpp",
         "iosfwd": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "tuple": "cpp"
     }
 }

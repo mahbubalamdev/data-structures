@@ -7,6 +7,8 @@
 
 using namespace std;
 
+typedef pair<int, string> state;
+
 class Graph{
     public:
         map<string, vector<tuple<string, int>>> adjList;
@@ -22,6 +24,7 @@ class Graph{
             }
             return result;
         }
+     
         string getStartState(){
             return "Syracuse";
         }
@@ -89,7 +92,32 @@ vector<string> bfs(Graph g, string s){
     }
     return result;
 }
- 
+
+vector<string> djkistra(Graph g, string s, string goal){
+    priority_queue<state, vector<state>, greater<state>> pq;
+    map<string, int> dist;
+
+    pq.push(make_pair(0, s));
+    dist[s] = 0;
+    while(!pq.empty()){
+        string node = pq.top().second;
+        int distance = pq.top().first;
+        pq.pop();
+
+    
+        vector<tuple<string, int>>::iterator it;ß
+        for(it=g.adjList[node].begin(); it!=g.adjList[node].end(); ++it){
+            int newDistance = distance + (get<1>(*it));
+            if(!dist.count(neighbour) || newDistance < dist[neighbour]){
+                dist[neighbour] = newDistance;
+                pq.push(make_pair(newDistance, neighbour));
+            }
+        }
+
+
+    }
+}
+
 int main(){
     Graph g;
     g.addEdge("Syracuse", "Rome", 44);
@@ -113,7 +141,7 @@ int main(){
         cout << s << endl;
     }
 
-    cout << "BFS" << endl;
+    cout << "\nBFS" << endl;
     visited = map<string, bool>();
     path = bfs(g, g.getStartState());
     reverse(path.begin(), path.end());
