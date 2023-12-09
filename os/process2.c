@@ -11,7 +11,7 @@ int main(int argc, char **argv)
     }
     else {
         printf("Value of val = % d\n",val);
-        char *args[] = {"/bin/date", "0", NULL};
+        char *args[] = {"/bin/date", NULL};
         execvp(args[0], args);
     }
     val++;
