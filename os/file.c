@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<unistd.h>
-#include<fctnl.h>
+#include<fcntl.h>
 
 int main(){
     int fd1, fd2, rc;
@@ -9,7 +9,7 @@ int main(){
 
     rc = lseek(fd1, 50, SEEK_SET);
 
-    fc = fork();
+    rc = fork();
     if (rc < 0){
         exit(1);
     }
