@@ -19,6 +19,9 @@ int main(){
         rc = lseek(fd1, 20, SEEK_CUR);
         printf("Child: fd1 %d offset %d\n", fd1, rc);
 
+        rc = lseek(fd2, 50, SEEK_CUR);
+        printf("Child: fd2 %d offset %d\n", fd2, rc);
+
     }
     else {
         (void) wait(NULL);
