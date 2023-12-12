@@ -39,8 +39,8 @@ int main(int argc, char *argv[]){
     init();
     int n = atoi(argv[1]);
 
-    pthread_t worker;
-    pthread_create(&worker, NULL, worker, (void*)n);
+    pthread_t wrk;
+    pthread_create(&wrk, NULL, worker, (void*)n);
     thr_wait();
     return 0;
 }
