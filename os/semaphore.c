@@ -18,8 +18,9 @@ void sum(int N){
     }
     sem_wait(&boss_lock);
     done = 1;
-    sem_post(&worker_lock);
     printf("[Worker] done\n");
+    sem_post(&worker_lock);
+    
 }
 
 void * worker(void * n){
@@ -32,7 +33,9 @@ void * worker(void * n){
 void thr_wait(){
     while(!done){
         sem_wait(&worker_lock);
+        if(!done){
         printf("[Boss] running total = %d\n", total);
+        }
         sem_post(&boss_lock);
     }
 }
