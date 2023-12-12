@@ -17,6 +17,7 @@ void sum(int N){
         sem_post(&worker_lock);
     }
     done = 1;
+    sem_post(&worker_lock);
     printf("[Worker] done\n");
 }
 
