@@ -16,6 +16,7 @@ void sum(int N){
         printf("[Worker] processed i = %d\n", i);
         sem_post(&worker_lock);
     }
+    sem_wait(&boss_lock);
     done = 1;
     sem_post(&worker_lock);
     printf("[Worker] done\n");
@@ -43,5 +44,7 @@ int main(int argc, char *argv[]){
     pthread_t wrk;
     pthread_create(&wrk, NULL, worker, (void*)n);
     thr_wait();
+    printf("Grand total = %d\n", total);
+    printf("Main end\n");
     return 0;
 }
