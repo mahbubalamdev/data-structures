@@ -18,7 +18,7 @@ int partition(int arr[], int low, int high){
             i++;
         }
     }
-    swap(&arr[high], arr[i]);
+    swap(&arr[high], &arr[i]);
     return i;
 }
 void qsort(int arr[], int low, int high){
