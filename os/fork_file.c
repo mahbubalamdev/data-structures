@@ -18,7 +18,8 @@ int main(int argc, char *argv[]){
             exit(1);
         }
         char *myargs[2];
-        myargs[0] = strdup("ls"); // execute ls command myargs[1] = NULL;
+        myargs[0] = strdup("ls"); // execute ls command
+        myargs[1] = NULL;
         int status = execvp(myargs[0], myargs);
         if(status == -1){
             printf("execvp: failed");
