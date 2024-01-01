@@ -3,23 +3,23 @@
 #include<pthread.h>
 int total = 0;
 int done = 0;
-sem_t worker_lock, boss_lock;
+sem_t empty, full;
 void init(){
-    sem_init(&worker_lock, 0, 0);
-    sem_init(&boss_lock, 0, 1);
+    sem_init(&full, 0, 0);
+    sem_init(&empty, 0, 1);
 }
 
 void sum(int N){
     for (int i=1; i<=N; i++){
-        sem_wait(&boss_lock);
+        sem_wait(&empty);
         total += i;
         printf("[Worker] processed i = %d\n", i);
-        sem_post(&worker_lock);
+        sem_post(&full);
     }
-    sem_wait(&boss_lock);
+    sem_wait(&empty);
     done = 1;
     printf("[Worker] done\n");
-    sem_post(&worker_lock);
+    sem_post(&full);
     
 }
 
@@ -32,11 +32,9 @@ void * worker(void * n){
 }
 void thr_wait(){
     while(!done){
-        sem_wait(&worker_lock);
-        if(!done){
-        printf("[Boss] running total = %d\n", total);
-        }
-        sem_post(&boss_lock);
+        sem_wait(&full);
+        printf("[Main] running total = %d\n", total);
+        sem_post(&empty);
     }
 }
 int main(int argc, char *argv[]){
