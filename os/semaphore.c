@@ -45,7 +45,7 @@ int main(int argc, char *argv[]){
     pthread_t wrk;
     pthread_create(&wrk, NULL, worker, (void*)n);
     thr_wait();
-    printf("Grand total = %d\n", total);
+    printf("[Main] Grand total = %d\n", total);
     printf("Main end\n");
     return 0;
 }
